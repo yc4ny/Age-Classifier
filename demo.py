@@ -107,20 +107,6 @@ val_dataloader = DataLoader(val_dataset, batch_size=256, shuffle=False)
 test_dataset = Dataset(test_meta_data, test_image_directory, test_transform)
 test_dataloader = DataLoader(test_dataset, batch_size=256, shuffle=False)
 
-
-
-def imshow(input):
-    # torch.Tensor => numpy
-    input = input.numpy().transpose((1, 2, 0))
-    # undo image normalization
-    mean = np.array([0.5, 0.5, 0.5])
-    std = np.array([0.5, 0.5, 0.5])
-    input = std * input + mean
-    input = np.clip(input, 0, 1)
-    # display images
-    plt.imshow(input)
-    plt.show()
-
 learning_rate = 0.01
 log_step = 20
 
@@ -180,25 +166,3 @@ model.load_state_dict(torch.load(model_path))
 test_loss, test_acc = test(model, test_dataloader, criterion, writer, epoch, log_step)
 print("test loss:", test_loss)
 print("test acc:", test_acc)
-
-# model = models.resnet50(pretrained=True)
-# num_features = model.fc.in_features
-# model.fc = nn.Linear(num_features, 8) # transfer learning
-# model = model.cuda()
-# model_path = 'best_checkpoint_epoch.pth'
-# model.load_state_dict(torch.load(model_path))
-
-# test_loss, test_acc = test(model, test_dataloader, criterion, writer, epoch, log_step)
-# print("test loss:", test_loss)
-# print("test acc:", test_acc)
-
-# for i in range(1, 8):
-#     filename = f'example_{i}.png'
-#     image = Image.open('korean_face_age_classification/images/' + filename).convert('RGB')
-#     image = test_transform(image).unsqueeze(0).cuda()
-
-#     with torch.no_grad():
-#         outputs = model(image)
-#         _, preds = torch.max(outputs, 1)
-#         print("Prediction:", label_to_age[preds[0].item()])
-#         imshow(image.cpu().data[0])

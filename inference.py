@@ -1,8 +1,9 @@
 import torch 
 import torch.nn as nn
 from PIL import Image
+import matplotlib.pyplot as plt
 from torchvision import transforms, models
-from demo import imshow
+import numpy as np
 
 label_to_age = {
     0: "0-6 years old",
@@ -33,6 +34,18 @@ test_transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]) 
 ])
+
+def imshow(input):
+    # torch.Tensor => numpy
+    input = input.numpy().transpose((1, 2, 0))
+    # undo image normalization
+    mean = np.array([0.5, 0.5, 0.5])
+    std = np.array([0.5, 0.5, 0.5])
+    input = std * input + mean
+    input = np.clip(input, 0, 1)
+    # display images
+    plt.imshow(input)
+    plt.show()
 
 model = models.resnet50(pretrained=True)
 num_features = model.fc.in_features
