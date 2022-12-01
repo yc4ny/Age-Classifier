@@ -2,7 +2,7 @@ import time as time
 import torch
 from torch.utils.tensorboard import SummaryWriter
 
-def test(model, test_dataloader, criterion, writer, epoch, log_step):
+def test(model, test_dataloader, criterion, log_step):
     start_time = time.time()
     print(f'[Test]')
     model.eval()

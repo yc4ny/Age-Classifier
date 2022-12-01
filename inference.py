@@ -16,19 +16,6 @@ label_to_age = {
     7: "67-80 years old"
 }
 
-train_transform = transforms.Compose([
-    transforms.Resize(128),
-    transforms.RandomHorizontalFlip(),
-    transforms.ToTensor(),
-    transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]) 
-])
-
-val_transform = transforms.Compose([
-    transforms.Resize(128),
-    transforms.ToTensor(),
-    transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]) 
-])
-
 test_transform = transforms.Compose([
     transforms.Resize(128),
     transforms.ToTensor(),
@@ -51,12 +38,13 @@ model = models.resnet50(pretrained=True)
 num_features = model.fc.in_features
 model.fc = nn.Linear(num_features, 8) # transfer learning
 model = model.cuda()
-model_path = 'best_checkpoint_epoch.pth'
+model_path = 'checkpoints/best_checkpoint.pth'
 model.load_state_dict(torch.load(model_path))
+model.eval()
 
 for i in range(1, 8):
     filename = f'example_{i}.png'
-    image = Image.open('korean_face_age_classification/images/' + filename).convert('RGB')
+    image = Image.open('test_img/' + filename).convert('RGB')
     image = test_transform(image).unsqueeze(0).cuda()
 
     with torch.no_grad():
