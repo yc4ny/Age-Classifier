@@ -1,6 +1,5 @@
 import time as time
 import torch 
-from torch.utils.tensorboard import SummaryWriter
 
 def train(epoch, model, train_dataloader, optimizer, criterion, log_step):
     start_time = time.time()
