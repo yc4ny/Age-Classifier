@@ -4,6 +4,12 @@ from PIL import Image
 import matplotlib.pyplot as plt
 from torchvision import transforms, models
 import numpy as np
+import argparse
+import os
+
+parser = argparse.ArgumentParser(description = "Age Classification")
+parser.add_argument('--inference_dir', type = str, default = 'test_img', help = 'test image directory')
+args = parser.parse_args()
 
 label_to_age = {
     0: "0-6 years old",
@@ -23,14 +29,11 @@ test_transform = transforms.Compose([
 ])
 
 def imshow(input):
-    # torch.Tensor => numpy
     input = input.numpy().transpose((1, 2, 0))
-    # undo image normalization
     mean = np.array([0.5, 0.5, 0.5])
     std = np.array([0.5, 0.5, 0.5])
     input = std * input + mean
     input = np.clip(input, 0, 1)
-    # display images
     plt.imshow(input)
     plt.show()
 
@@ -39,16 +42,16 @@ num_features = model.fc.in_features
 model.fc = nn.Linear(num_features, 8) # transfer learning
 model = model.cuda()
 model_path = 'checkpoints/best_checkpoint.pth'
-model.load_state_dict(torch.load(model_path))
-model.eval()
+model.load_state_dict(torch.load(model_path)) # load model
+model.eval() # set model to evaluation mode
 
-for i in range(1, 8):
-    filename = f'example_{i}.png'
-    image = Image.open('test_img/' + filename).convert('RGB')
-    image = test_transform(image).unsqueeze(0).cuda()
-
+directory = args.inference_dir
+for filename in os.listdir(directory):
+    f = os.path.join(directory, filename)
+    img = Image.open(f).convert('RGB')#  convert to RGB : Test image has additional alpha channel per pixel thus it has 4 channels instead of only three
+    img = test_transform(img).unsqueeze(dim = 0).cuda() # (1, 3, 128, 128)
     with torch.no_grad():
-        outputs = model(image)
+        outputs = model(img)
         _, preds = torch.max(outputs, 1)
         print("Prediction:", label_to_age[preds[0].item()])
-        imshow(image.cpu().data[0])
+        imshow(img.cpu().data[0]) # (3, 128, 128) # Can't convert cuda device type tensor to numpy, so use cpu() to move tensor to host memory first
