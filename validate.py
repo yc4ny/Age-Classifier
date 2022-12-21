@@ -3,7 +3,7 @@ import torch
 
 def validate(epoch, model, val_dataloader, criterion, log_step):
     start_time = time.time()
-    print(f'[Epoch: {epoch + 1} - Validation]')
+    print(f'--------------Epoch: {epoch + 1}-------------- \n Validation')
     model.eval()
     total = 0
     running_loss = 0.0
@@ -23,8 +23,8 @@ def validate(epoch, model, val_dataloader, criterion, log_step):
         running_corrects += torch.sum(preds == labels.data)
 
         if (i == 0) or (i % log_step == log_step - 1):
-            print(f'[Batch: {i + 1}] running val loss: {running_loss / total}, running val accuracy: {running_corrects / total}')
+            print(f'-------------- Batch: {i + 1}--------------\n running val loss: {running_loss / total}, running val accuracy: {running_corrects / total}')
 
-    print(f'val loss: {running_loss / total}, accuracy: {running_corrects / total}')
-    print("elapsed time:", time.time() - start_time)
+    print(f'**********Validation loss: {running_loss / total}, accuracy: {running_corrects / total}**********')
+    print("Elapsed time:", time.time() - start_time, " seconds")
     return running_loss / total, (running_corrects / total).item()

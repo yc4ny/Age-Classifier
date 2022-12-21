@@ -3,7 +3,7 @@ import torch
 
 def train(epoch, model, train_dataloader, optimizer, criterion, log_step):
     start_time = time.time()
-    print(f'[Epoch: {epoch + 1} - Training]')
+    print(f'-------------- Epoch: {epoch + 1}-------------- \nTraining')
     model.train()
     total = 0
     running_loss = 0.0
@@ -26,10 +26,10 @@ def train(epoch, model, train_dataloader, optimizer, criterion, log_step):
         running_corrects += torch.sum(preds == labels.data)
         
         if i % log_step == log_step - 1:
-            print(f'[Batch: {i + 1}] running train loss: {running_loss / total}, running train accuracy: {running_corrects / total}')
+            print(f'-------------- Batch: {i + 1}-------------- \n running train loss: {running_loss / total}, running train accuracy: {running_corrects / total}')
 
-    print(f'train loss: {running_loss / total}, accuracy: {running_corrects / total}')
-    print("elapsed time:", time.time() - start_time)
+    print(f'**********Train loss: {running_loss / total}, Accuracy: {running_corrects / total}**********')
+    print("Elapsed time:", time.time() - start_time)
     return running_loss / total, (running_corrects / total).item()
 
 def adjust_learning_rate(optimizer,learning_rate, epoch):
