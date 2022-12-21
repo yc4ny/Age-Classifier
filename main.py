@@ -83,17 +83,17 @@ label_to_age = {
 }
 
 # Data Files
-train_meta_data_path = "./custom_korean_family_dataset_resolution_128/custom_train_dataset.csv"
+train_meta_data_path = "face_dataset/custom_train_dataset.csv"
 train_meta_data = pd.read_csv(train_meta_data_path)
 train_image_directory = "./custom_korean_family_dataset_resolution_128/train_images"
 
-val_meta_data_path = "./custom_korean_family_dataset_resolution_128/custom_val_dataset.csv"
+val_meta_data_path = "face_dataset/custom_val_dataset.csv"
 val_meta_data = pd.read_csv(val_meta_data_path)
 val_image_directory = "./custom_korean_family_dataset_resolution_128/val_images"
 
-test_meta_data_path = "./custom_korean_family_dataset_resolution_128/custom_test_dataset.csv"
+test_meta_data_path = "face_dataset/custom_test_dataset.csv"
 test_meta_data = pd.read_csv(test_meta_data_path)
-test_image_directory = "./custom_korean_family_dataset_resolution_128/test_images"
+test_image_directory = "face_dataset/test_images"
 
 # Image Transformations 
 train_transform = transforms.Compose([
