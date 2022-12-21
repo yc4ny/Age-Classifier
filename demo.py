@@ -1,14 +1,19 @@
 import torch 
 import torch.nn as nn
 from PIL import Image
+from PIL import ImageFont
+from PIL import ImageDraw 
 import matplotlib.pyplot as plt
 from torchvision import transforms, models
 import numpy as np
 import argparse
 import os
+import cv2 
 
 parser = argparse.ArgumentParser(description = "Age Classification")
-parser.add_argument('--inference_dir', type = str, default = 'test_img', help = 'test image directory')
+parser.add_argument('--input', type = str, default = 'testing/input_dir', help = 'Inference Directory')
+parser.add_argument('--output', type = str, default = 'testing/output_dir', help = 'Output Directory')
+parser.add_argument('--model', type = str, default = 'checkpoints/best_checkpoint.pth', help = 'Model Path')
 args = parser.parse_args()
 
 label_to_age = {
@@ -41,17 +46,22 @@ model = models.resnet50(pretrained=True)
 num_features = model.fc.in_features
 model.fc = nn.Linear(num_features, 8) # transfer learning
 model = model.cuda()
-model_path = 'checkpoints/best_checkpoint.pth'
+model_path = args.model
 model.load_state_dict(torch.load(model_path)) # load model
 model.eval() # set model to evaluation mode
 
-directory = args.inference_dir
+directory = args.input
+
 for filename in os.listdir(directory):
     f = os.path.join(directory, filename)
-    img = Image.open(f).convert('RGB')#  convert to RGB : Test image has additional alpha channel per pixel thus it has 4 channels instead of only three
+    img = Image.open(f).convert('RGB')
     img = test_transform(img).unsqueeze(dim = 0).cuda() # (1, 3, 128, 128)
     with torch.no_grad():
         outputs = model(img)
         _, preds = torch.max(outputs, 1)
-        print("Prediction:", label_to_age[preds[0].item()])
-        imshow(img.cpu().data[0]) # (3, 128, 128) # Can't convert cuda device type tensor to numpy, so use cpu() to move tensor to host memory first
+        txt = "Predicted Age: " + label_to_age[preds[0].item()]
+        img = cv2.imread(f)
+        img = cv2.putText(img, txt, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 1, cv2.LINE_AA)
+        cv2.imwrite(os.path.join(args.output, filename), img)
+
+
