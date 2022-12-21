@@ -85,11 +85,11 @@ label_to_age = {
 # Data Files
 train_meta_data_path = "face_dataset/custom_train_dataset.csv"
 train_meta_data = pd.read_csv(train_meta_data_path)
-train_image_directory = "./custom_korean_family_dataset_resolution_128/train_images"
+train_image_directory = "face_dataset/train_images"
 
 val_meta_data_path = "face_dataset/custom_val_dataset.csv"
 val_meta_data = pd.read_csv(val_meta_data_path)
-val_image_directory = "./custom_korean_family_dataset_resolution_128/val_images"
+val_image_directory = "face_dataset/val_images"
 
 test_meta_data_path = "face_dataset/custom_test_dataset.csv"
 test_meta_data = pd.read_csv(test_meta_data_path)
@@ -158,16 +158,16 @@ for epoch in range(num_epochs):
         print("Best validation accuracy!")
         best_val_acc = val_acc
         best_epoch = epoch
-        torch.save(model.state_dict(), f'checkpoints/best_checkpoint.pth')
+        print("Saving Model...")
+        torch.save(model.state_dict(), args.save_dir + '/best_checkpoint.pth')
 
 # Load the best model for testing
 model = models.resnet50(pretrained=True)
 num_features = model.fc.in_features
 model.fc = nn.Linear(num_features, 8) # transfer learning
 model = model.cuda() # Send model to GPU
-model_path = 'checkpoints/best_checkpoint.pth'
-model.load_state_dict(torch.load(model_path)) # Load state
+model.load_state_dict(torch.load(args.save_dir + '/best_checkpoint.pth')) # Load state
 
 test_loss, test_acc = test(model, test_dataloader, criterion, log_step) 
 print("Test loss:", test_loss)
-print("Test acc:", test_acc)
+print("Test accuracy:", test_acc)

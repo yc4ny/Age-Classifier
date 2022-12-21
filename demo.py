@@ -9,6 +9,7 @@ import numpy as np
 import argparse
 import os
 import cv2 
+from tqdm import tqdm
 
 parser = argparse.ArgumentParser(description = "Age Classification")
 parser.add_argument('--input', type = str, default = 'testing/input_dir', help = 'Inference Directory')
@@ -52,7 +53,7 @@ model.eval() # set model to evaluation mode
 
 directory = args.input
 
-for filename in os.listdir(directory):
+for filename in tqdm(os.listdir(directory)):
     f = os.path.join(directory, filename)
     img = Image.open(f).convert('RGB')
     img = test_transform(img).unsqueeze(dim = 0).cuda() # (1, 3, 128, 128)
