@@ -7,7 +7,7 @@ Model to estimate age trained on ResNet50<br/>
 </p>
 <br/>
 
-> - Predicted age (red text) of some famous stars. 
+> - Predicted age of some famous stars. 
 
 
 ## Environment Setup
