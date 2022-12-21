@@ -13,7 +13,7 @@ import cv2
 parser = argparse.ArgumentParser(description = "Age Classification")
 parser.add_argument('--input', type = str, default = 'testing/input_dir', help = 'Inference Directory')
 parser.add_argument('--output', type = str, default = 'testing/output_dir', help = 'Output Directory')
-parser.add_argument('--model', type = str, default = 'checkpoints/best_checkpoint.pth', help = 'Model Path')
+parser.add_argument('--checkpoint', type = str, default = 'checkpoints/best_checkpoint.pth', help = 'Model Path')
 args = parser.parse_args()
 
 label_to_age = {
@@ -46,7 +46,7 @@ model = models.resnet50(pretrained=True)
 num_features = model.fc.in_features
 model.fc = nn.Linear(num_features, 8) # transfer learning
 model = model.cuda()
-model_path = args.model
+model_path = args.checkpoint
 model.load_state_dict(torch.load(model_path)) # load model
 model.eval() # set model to evaluation mode
 
