@@ -155,7 +155,7 @@ for epoch in range(num_epochs):
     writer.add_scalars('Accuracy', {'train': train_acc, 'val': val_acc}, epoch)
 # Save the best model
     if val_acc > best_val_acc:
-        print("[Info] best validation accuracy!")
+        print("Best validation accuracy!")
         best_val_acc = val_acc
         best_epoch = epoch
         torch.save(model.state_dict(), f'checkpoints/best_checkpoint.pth')
@@ -165,10 +165,10 @@ model = models.resnet50(pretrained=True)
 # model = models.resnet152(pretrained=True)
 num_features = model.fc.in_features
 model.fc = nn.Linear(num_features, 8) # transfer learning
-model = model.cuda()
+model = model.cuda() # Send model to GPU
 model_path = 'checkpoints/best_checkpoint.pth'
-model.load_state_dict(torch.load(model_path))
+model.load_state_dict(torch.load(model_path)) # Load state
 
-test_loss, test_acc = test(model, test_dataloader, criterion, log_step)
-print("test loss:", test_loss)
-print("test acc:", test_acc)
+test_loss, test_acc = test(model, test_dataloader, criterion, log_step) 
+print("Test loss:", test_loss)
+print("Test acc:", test_acc)
