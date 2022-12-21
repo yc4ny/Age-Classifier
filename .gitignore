@@ -1,6 +1,6 @@
 __pycache__
 custom_korean_family_dataset_resolution_128/
 korean_face_age_classification/
-runs/
+runs
 infer_img/*.jpg
-checkpoints/
+checkpoints
