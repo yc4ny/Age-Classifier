@@ -1,5 +1,5 @@
 # Age Classification Model <br/> 
-Model to estimate age trained on ResNet50<br/> 
+## Model to estimate age built using PyTorch<br/> 
 
 <br/>
 <p align= "center">
