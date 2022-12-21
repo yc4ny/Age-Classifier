@@ -7,8 +7,7 @@ Model to estimate age trained on ResNet50<br/>
 </p>
 <br/>
 
-> - Top: Input Images 
-> - Bottom: Generated Panoramic Image
+> - Predicted age (red text) of some famous stars. 
 
 
 ## Environment Setup
