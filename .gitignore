@@ -1,5 +1,4 @@
 __pycache__
-custom_korean_family_dataset_resolution_128/
 face_dataset/*
 runs/*
 checkpoints/*
