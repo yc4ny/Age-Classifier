@@ -3,13 +3,7 @@ Model to estimate age trained on ResNet50<br/>
 
 <br/>
 <p align= "center">
-<img src="repo_img/KimYoungOk.jpg" width="500" height="500" />
-</p>
-<br/>
-
-<br/>
-<p align= "center">
-<img src="repo_img/ChooSarang.jpg" width="500" height="500" />
+<img src="repo_img/output.png" width="1242" height="900" />
 </p>
 <br/>
 
