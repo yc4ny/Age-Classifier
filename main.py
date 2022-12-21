@@ -162,7 +162,6 @@ for epoch in range(num_epochs):
 
 # Load the best model for testing
 model = models.resnet50(pretrained=True)
-# model = models.resnet152(pretrained=True)
 num_features = model.fc.in_features
 model.fc = nn.Linear(num_features, 8) # transfer learning
 model = model.cuda() # Send model to GPU
