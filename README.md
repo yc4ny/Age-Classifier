@@ -8,9 +8,11 @@
 <br/>
 
 > - Predicted age of some famous stars. 
+> - Input: Any size, type (extension) facial RGB image of a person. 
+> - Output: Predicted Age Range
+> - 70.3215 % accuracy achieved. 
 
-
-## Environment Setup
+## Environment Setups
 > Note: This code was developed on Ubuntu 20.04 with Python 3.7. Later versions should work, but have not been tested.
 Create and activate a virtual environment to work in, e.g. using Conda:
 
@@ -28,6 +30,7 @@ pip install torch==1.7.1+cu110 torchvision==0.8.2+cu110 torchaudio==0.7.2 -f htt
 ```
 pip install -r requirements.txt
 ```
+### Dataset Setup
 
 ### Folder Hierarchy
 Once you sucessfully downloaded and unzips dataset files, you should have a directory similar to this:
