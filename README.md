@@ -36,7 +36,7 @@ pip install -r requirements.txt
 ```
 
 ### Pretrained Model 
-The pretrained model trained on Resnet50 can be found here:
+The pretrained model trained on Resnet50 can be found here: <br/>
 <a href="https://drive.google.com/file/d/1w0ktgUwAhtyAaGTP2NZkZqOSpfEcWF3p/view?usp=share_link">best_checkpoint.pth</a>
 
 ### Dataset Setup
