@@ -32,8 +32,8 @@ pip install -r requirements.txt
 ### Dataset Setup
 This project uses the <a href="https://aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&aihubDataSe=realm&dataSetSn=528">Facial Image Data with Known Family Relationships</a> dataset from AI Hub. 
 
-Please download the dataset from:
-```https://drive.google.com/file/d/1YOfavMsYwv21IQ19iDN3THppfhx4cM3n/view?usp=share_link```
+Please download the dataset
+<a href="https://drive.google.com/file/d/1YOfavMsYwv21IQ19iDN3THppfhx4cM3n/view?usp=share_link"> here </a>.
 
 ### Folder Hierarchy
 Once you sucessfully downloaded and unzips dataset files, you should have a directory similar to this:
