@@ -1,4 +1,4 @@
-# Age Classification Model <br/> 
+# Age Classifier <br/> 
 ## Model to estimate age of people built using PyTorch<br/> 
 
 <br/>
@@ -24,30 +24,29 @@ conda activate venv_age
 > Install Pytorch according to your GPU verison. eg) RTX 3090, CUDA 11.0 
 ```
 pip install torch==1.7.1+cu110 torchvision==0.8.2+cu110 torchaudio==0.7.2 -f https://download.pytorch.org/whl/torch_stable.html
-
 ```
 >Install other dependencies. 
 ```
 pip install -r requirements.txt
 ```
 ### Dataset Setup
+This project uses the ```Facial Image Data with Known Family Relationships``` dataset from AI Hub. 
+Please download the dataset from:
+```https://drive.google.com/file/d/1YOfavMsYwv21IQ19iDN3THppfhx4cM3n/view?usp=share_link```
 
 ### Folder Hierarchy
 Once you sucessfully downloaded and unzips dataset files, you should have a directory similar to this:
    ```
-    ./dataset/
-    ├── custom
-    │   └── sample_data.csv
-    │   └── test_1.csv
-    |   └── test_2.csv
-    │   └── test_3.csv
-    ├── facebook_clean_data
-    |   └──artist_edges.csv  
-    |   └──athletes_edges.csv  
-    |   └──company_edges.csv  
-    |   └──government_edges.csv  
-    └── git_web_ml
-        └── musae_git_edges.csv
+    ./face_dataset
+    ├── 
+    │   └── fixed_test_val
+    │   └── fixed_val_dataset
+    |   └── test_images
+    │   └── train_images
+    │   └── val_images
+    |   └── custom_test_dataset.csv
+    |   └── custom_train_dataset.csv
+    |   └── custom_val_dataset.csv
    ```
 ## Running the demo
 To run inference on the pretrained model, run:
