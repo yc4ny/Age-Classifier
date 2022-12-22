@@ -25,10 +25,20 @@ conda activate venv_age
 ```
 pip install torch==1.7.1+cu110 torchvision==0.8.2+cu110 torchaudio==0.7.2 -f https://download.pytorch.org/whl/torch_stable.html
 ```
+> Not recommended but this project also works on CPU. Install Pytorch according to your OS. eg) Linux
+```
+conda install pytorch torchvision torchaudio cpuonly -c pytorch
+```
+
 >Install other dependencies. 
 ```
 pip install -r requirements.txt
 ```
+
+### Pretrained Model 
+The pretrained model trained on Resnet50 can be found here:
+<a href="https://drive.google.com/file/d/1w0ktgUwAhtyAaGTP2NZkZqOSpfEcWF3p/view?usp=share_link">best_checkpoint.pth</a>
+
 ### Dataset Setup
 This project uses the <a href="https://aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&aihubDataSe=realm&dataSetSn=528">Facial Image Data with Known Family Relationships</a> dataset from AI Hub. 
 
@@ -56,11 +66,10 @@ python demo.py
 ```
 #### Model options
 ```
-  --input               STR    Input graph path.                                    
+  --input               STR     Input Directory
+  --output              STR     Output Directory
+  --checkpoint          STR     Model Checkpoint                                    
 ```
-> - To use your own set of images, place your images in the ```input``` folder. <br/>
-> - Update your camera parameters ```K``` in the ```demo.py``` file. Accurate camera parameters are needed to produce robust results. 
-> - Each step is printed when an input image has been transformed and projected on to the new image plane. 
 
 
 
