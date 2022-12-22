@@ -60,9 +60,9 @@ Once you sucessfully downloaded and unzips dataset files, you should have a dire
     |   └── custom_val_dataset.csv
    ```
 ## Running the demo
-To run inference on the pretrained model, run:
+To run the model:
 ```
-python demo.py
+python demo.py --input InputDirectory --output OutputDirectory --checkpoint checkpoints/best_checkpoint.pth
 ```
 #### Model options
 ```
