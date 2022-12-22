@@ -1,5 +1,5 @@
 # Age Classifier <br/> 
-## Model to estimate age of people built using PyTorch<br/> 
+## Classifier which estimates the age of humans built on PyTorch <br/> 
 
 <br/>
 <p align= "center">
