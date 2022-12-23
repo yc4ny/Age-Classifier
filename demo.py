@@ -9,7 +9,6 @@ import numpy as np
 import argparse
 import os
 import cv2 
-from tqdm import tqdm
 
 parser = argparse.ArgumentParser(description = "Age Classification")
 parser.add_argument('--input', type = str, default = 'testing/input_dir', help = 'Inference Directory')
@@ -53,7 +52,7 @@ model.eval() # set model to evaluation mode
 
 directory = args.input
 
-for filename in tqdm(os.listdir(directory)):
+for filename in os.listdir(directory):
     f = os.path.join(directory, filename)
     img = Image.open(f).convert('RGB')
     img = test_transform(img).unsqueeze(dim = 0).cuda() # (1, 3, 128, 128)
@@ -62,7 +61,7 @@ for filename in tqdm(os.listdir(directory)):
         _, preds = torch.max(outputs, 1)
         txt = "Predicted Age: " + label_to_age[preds[0].item()]
         img = cv2.imread(f)
-        img = cv2.putText(img, txt, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 1, cv2.LINE_AA)
+        img = cv2.putText(img, txt, (10, 30), cv2.FONT_HERSHEY_SIMPLEXbvn , 0.6, (0, 0, 255), 1, cv2.LINE_AA)
         cv2.imwrite(os.path.join(args.output, filename), img)
 
 

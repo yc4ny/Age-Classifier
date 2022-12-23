@@ -18,7 +18,7 @@ Create and activate a virtual environment to work in, e.g. using Conda:
 
 ```
 conda create -n venv_age python=3.7
-conda activate venv_age
+conda activate venv_agep
 ```
 
 > Install Pytorch according to your GPU verison. eg) RTX 3090, CUDA 11.0 
