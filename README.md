@@ -76,6 +76,19 @@ To train and reproduce the results, run:
 ```
 python main.py --num_epochs 15 --save_dir checkpoints/
 ```
-This will automatically save the model with the highest accuracy into your designated output folder (in this case ```checkpoints/best_checkpoint.pth```). There is a ```adjust_learning_rate``` function which I've added to allow the model to converge faster while preventing overfitting. If you want to train at a constant learning rate, please change the ```adjust_lr``` flag to ```False```.
+This will automatically save the model with the highest accuracy into your designated output folder, in this case in ```checkpoints/best_checkpoint.pth```. There is a ```adjust_learning_rate``` function which I've added to allow the model to converge faster while preventing overfitting. If you want to train at a constant learning rate, please change the ```adjust_lr``` flag to ```False```.
 
+#### Model options
+```
+  --batch_size              INT         Batch Size
+  --num_epochs              INT         Number of Epochs
+  --learning_rate           FLOAT       Learning Rate    
+  --momentum                FLOAT       Momentum
+  --weight_decay            FLOAT       Weight Decay
+  --num_workers             INT         Number of workers
+  --log_interval            INT         Interval of Logs
+  --save_interval           INT         Interval for saving
+  --save_dir                STR         Output Directory
+  --log_dir                 STR         Log Directory
+  --adjust_lr               BOOL        Adjusting Learning Rate
 
