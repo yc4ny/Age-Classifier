@@ -128,7 +128,7 @@ test_dataloader = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=F
 
 # Summary Writer for TensorBoard
 writer = SummaryWriter()
-
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 # Learning Rate, Log Interval
 learning_rate = args.learning_rate
 log_step = args.log_interval
@@ -138,7 +138,7 @@ model = models.resnet50(pretrained=True) # pretrained ResNet50
 # model = models.resnet152(pretrained=True) 
 num_features = model.fc.in_features # get the number of features in the last layer
 model.fc = nn.Linear(num_features, 8) # 8 classes
-model = model.cuda() # GPU
+model = model.to(device) # GPU
 criterion = nn.CrossEntropyLoss() # loss function
 # optimizer = optim.SGD(model.parameters(), lr=learning_rate, momentum=0.9) # optimizer
 optimizer = optim.Adam(model.parameters(), lr=learning_rate, weight_decay=args.weight_decay)
