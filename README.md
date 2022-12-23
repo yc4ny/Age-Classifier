@@ -96,6 +96,6 @@ This will automatically save the model with the highest accuracy into your desig
 
 <br/>
 <p align= "center">
-<img src="imgs/loss_accuracy.png" width="600" height="450" />
+<img src="imgs/loss_accuracy.png" width="900" height="450" />
 </p>
 <br/>
