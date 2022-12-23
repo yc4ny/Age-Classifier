@@ -3,7 +3,7 @@
 
 <br/>
 <p align= "center">
-<img src="repo_img/output.png" width="600" height="450" />
+<img src="imgs/output.png" width="600" height="450" />
 </p>
 <br/>
 
