@@ -99,7 +99,7 @@ This will automatically save the model with the highest accuracy into your desig
 </p>
 <br/>
 
-You can tensorboard to visualize loss/accuracy plot with: 
+You can use tensorboard to visualize loss/accuracy plot with: 
 ```
 tensorboard --logdir runs/
 ```
