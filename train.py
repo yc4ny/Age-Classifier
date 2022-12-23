@@ -33,10 +33,14 @@ def train(epoch, model, train_dataloader, optimizer, criterion, log_step):
     return running_loss / total, (running_corrects / total).item()
 
 def adjust_learning_rate(optimizer,learning_rate, epoch):
+
     lr = learning_rate
+    
     if epoch >= 3:
         lr /= 10
+    
     if epoch >= 7:
         lr /= 10
+    
     for param_group in optimizer.param_groups:
         param_group['lr'] = lr
