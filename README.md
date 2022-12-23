@@ -70,7 +70,12 @@ python demo.py --input InputDirectory --output OutputDirectory --checkpoint chec
   --output              STR     Output Directory
   --checkpoint          STR     Model Checkpoint                                    
 ```
+## Training 
 
-
+To train and reproduce the results, run:
+```
+python main.py --num_epochs 15 --save_dir checkpoints/
+```
+This will automatically save the model with the highest accuracy into your designated output folder (in this case ```checkpoints/best_checkpoint.pth```). There is a ```adjust_learning_rate``` function which I've added to allow the model to converge faster while preventing overfitting. If you want to train at a constant learning rate, please change the ```adjust_lr``` flag to ```False```.
 
 
