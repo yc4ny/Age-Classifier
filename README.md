@@ -92,3 +92,10 @@ This will automatically save the model with the highest accuracy into your desig
   --log_dir                 STR         Log Directory
   --adjust_lr               BOOL        Adjusting Learning Rate
 
+### Tensorboard Logs
+
+<br/>
+<p align= "center">
+<img src="imgs/loss_accuracy.png" width="600" height="450" />
+</p>
+<br/>
