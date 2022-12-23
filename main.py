@@ -31,7 +31,7 @@ parser.add_argument('--log_interval', type = int, default = 10, help = 'log inte
 parser.add_argument('--save_interval', type = int, default = 1, help = 'save interval')
 parser.add_argument('--save_dir', type = str, default = 'checkpoints', help = 'save directory')
 parser.add_argument('--log_dir', type = str, default = 'runs', help = 'log directory')
-parser.add_argument('--adjust_lr', type = bool, default = True, help = 'adjust learning rate')
+parser.add_argument('--adjust_lr', type = str, default = 'True', help = 'adjust learning rate')
 args = parser.parse_args()
 
 # Parse Metadata
@@ -149,7 +149,7 @@ best_epoch = 0 # best epoch
 
 # Train
 for epoch in range(num_epochs):
-    if args.adjust_lr == True: 
+    if args.adjust_lr == 'True': 
         adjust_learning_rate(optimizer,learning_rate, epoch)
     train_loss, train_acc = train(epoch, model, train_dataloader, optimizer, criterion, log_step)
     val_loss, val_acc = validate(epoch, model, val_dataloader, criterion, log_step)
