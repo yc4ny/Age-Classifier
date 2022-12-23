@@ -25,6 +25,6 @@ def validate(epoch, model, val_dataloader, criterion, log_step):
         if (i == 0) or (i % log_step == log_step - 1):
             print(f'-------------- Batch: {i + 1}--------------\n running val loss: {running_loss / total}, running val accuracy: {running_corrects / total}')
 
-    print(f'**********Validation loss: {running_loss / total}, accuracy: {running_corrects / total}**********')
-    print("Elapsed time:", time.time() - start_time, " seconds")
+    print(f'\n**********Validation loss: {running_loss / total}, accuracy: {running_corrects / total}**********\n')
+    print("Elapsed time:", time.time() - start_time, " seconds\n")
     return running_loss / total, (running_corrects / total).item()
